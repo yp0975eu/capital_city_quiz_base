@@ -10,14 +10,11 @@ function checkAnswer() {
     //const response = await fetch(link);
     //const myJson = await response.json();
     //console.log(JSON.stringify(myJson));
-    var result = window.fetch(link);
-    let resultTextElement = document.querySelector('#result');
-    //  * Verify no errors were encountered in the API call. If an error occurs, display an alert message. 
-    if (no errors){
-      //success path
-      //  * If the API call was successful, extract the capital city from the World Bank API response.
+    var result = window.fetch(link).then( (response) => response.json() ).then( data => {
+      //do something with data here. 
+       //  * If the API call was successful, extract the capital city from the World Bank API response.
       
-      if (result[1]["capitalCity"].toUpperCase() == userAnswerElement.value.toUpperCase()){
+       if (result[1]["capitalCity"].toUpperCase() == userAnswerElement.value.toUpperCase()){
         //user answer and result from fetch match so correct answer
         //resultTextElement.innerHTML = "Correct! The capital of Germany is Berlin";
         resultTextElement.innerHTML = "Correct! The capital of " + countriesAndCodes[randomCountry]["name"] + " is " + result[1]["capitalCity"];
@@ -31,17 +28,25 @@ function checkAnswer() {
     //      If you want to be more flexible, include and use a string similarity library such as https://github.com/hiddentao/fast-levenshtein 
     //  * Finally, display an appropriate message in the resultTextElement to tell the user if they are right or wrong. 
     //      For example "Correct! The capital of Germany is Berlin" or "Wrong - the capital of Germany is not G, it is Berlin"      
-    } else {
-      //failure path
+   // } 
+    })
+    .catch( error => { 
       alert("There was an error");
-    }
+    /* deal with error  */}) ;
+
+    let resultTextElement = document.querySelector('#result');
+    //  * Verify no errors were encountered in the API call. If an error occurs, display an alert message. 
+   // if (no errors){
+      //success path
+     
     
   
   }
   
+
   
   var randomCountry;
-  window.addEventListener('DOMContentLoaded', (event) => {
+  //window.addEventListener('DOMContentLoaded', (event) => {
     let randomCountryElement = document.querySelector('#random-country');
     let userAnswerElement = document.querySelector("#user-answer");
     let submitButton = document.querySelector("#submit-answer");
@@ -79,6 +84,6 @@ function checkAnswer() {
     // already written, you should refactor your code to use functions to avoid writing very similar code twice. 
     
     
-  });
+  //});
   
   
