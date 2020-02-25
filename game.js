@@ -11,23 +11,18 @@ let clearButton = document.querySelector('#clear')
 // organized in the order of the script tags so the countriesAndCodes array is available to this script.
 
 //console.log(countriesAndCodes)  // You don't need to log countriesAndCodes - just proving it is available 
-let URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
+//let URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
 
-function randomnizedCountry(){
+
     let randomIndex = Math.floor(Math.random() * countriesAndCodes.length)// get random index from the array
     let randomCountry = countriesAndCodes[randomIndex]
     randomCountryElement.innerHTML = randomCountry.name
     let countryCode = randomCountry["alpha-2"]
     URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
-}
+
 //console.log(URL) // checking if the url is working
      
 // TODO when the page loads, select an element at random from the countriesAndCodes array
-window.addEventListener('load', function(){
-    // TODO display the country's name in the randomCountryElement 
-    randomCountryElement()
-    
-})
 
 // TODO add a click event handler to the submitButton.  When the user clicks the button,
 submitButton.addEventListener("click", function(){    
@@ -53,7 +48,7 @@ function quizgame_Handling(){
             }
 
         }).catch(err => {
-            Console.log(err)//If an error occurs, display an alert message. 
+            console.log(err)//If an error occurs, display an alert message. 
         }) 
 
 }
