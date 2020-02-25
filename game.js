@@ -18,7 +18,7 @@ let clearButton = document.querySelector('#clear')
     let randomCountry = countriesAndCodes[randomIndex]
     randomCountryElement.innerHTML = randomCountry.name
     let countryCode = randomCountry["alpha-2"]
-    URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
+    let URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
 
 //console.log(URL) // checking if the url is working
      
