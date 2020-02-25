@@ -11,14 +11,18 @@ let clearButton = document.querySelector('#clear')
 // organized in the order of the script tags so the countriesAndCodes array is available to this script.
 
 //console.log(countriesAndCodes)  // You don't need to log countriesAndCodes - just proving it is available 
-//let URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
+let URL //= `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
 
+randomCountry()
 
+function randomCountry() {
     let randomIndex = Math.floor(Math.random() * countriesAndCodes.length)// get random index from the array
     let randomCountry = countriesAndCodes[randomIndex]
     randomCountryElement.innerHTML = randomCountry.name
     let countryCode = randomCountry["alpha-2"]
-    let URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
+    URL = `https://api.worldbank.org/v2/country/${countryCode}?format=json` // world Bank API url
+}
+
 
 //console.log(URL) // checking if the url is working
      
@@ -61,11 +65,12 @@ clearButton.addEventListener('click', function() {
 })
 // TODO finally, connect the play again button. Clear the user's answer, 
 playAgainButton.addEventListener('click', function() {
+    randomCountry()
     resultTextElement.innerHTML = ''
     userAnswerElement.value = ''
-   let randomIndex = Math.floor(Math.random() * countriesAndCodes.length)// get random index from the array
-   randomCountry = countriesAndCodes[randomIndex]
-   randomCountryElement.innerHTML = randomCountry.name
+//    let randomIndex = Math.floor(Math.random() * countriesAndCodes.length)// get random index from the array
+//    randomCountry = countriesAndCodes[randomIndex]
+//    randomCountryElement.innerHTML = randomCountry.name
 })
 // TODO finally, connect the play again button. Clear the user's answer, select a new random country, 
 // display the country's name, handle the user's guess. If you didn't use functions in the code you've 
