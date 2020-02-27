@@ -47,7 +47,7 @@ function processApiResponse(data) {
   if (data[payload] && data[payload][countryInformation] && data[payload][countryInformation].capitalCity) {
     return data[payload][countryInformation].capitalCity
   }
-  alert('Api response does not have a capital :(')
+  throw new Error('Api response does not have a capital :(')
 }
 
 //  * Use fetch() to make a call to the World Bank API with the two-letter country code (from countriesAndCodes, example 'CN' or 'AF')
