@@ -53,12 +53,16 @@ function processApiResponse(data) {
 //  * Use fetch() to make a call to the World Bank API with the two-letter country code (from countriesAndCodes, example 'CN' or 'AF')
 function getCapitalFromApi(countryCode) {
   const url = `https://api.worldbank.org/v2/country/${countryCode}?format=json`
-  return fetch(url).then(res => {
-    //  * Verify no errors were encountered in the API call. If an error occurs, display an alert message. 
-    if (!res.ok) {
-      alert(res.statusText)
-      return
-    }
-    return res.json()
-  }).then(processApiResponse) //  * If the API call was successful, extract the capital city from the World Bank API response.
-}
+  return fetch(url)
+    .then(res => {
+      //  * Verify no errors were encountered in the API call. If an error occurs, display an alert message. 
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(processApiResponse) //  * If the API call was successful, extract the capital city from the World Bank API response.
+    .catch(error => {
+      alert(error)
+    })
+  }
